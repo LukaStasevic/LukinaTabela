@@ -7,134 +7,246 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      background-color: #e6f0fa; /* svetlo plava pozadina */
       padding: 20px;
     }
+
+    h2 {
+      color: #1a73e8; /* nebesko plava */
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 1em;
+      border-radius: 6px;
+      border: 1px solid #1a73e8;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #1155cc;
+      box-shadow: 0 0 5px #1155cc;
+    }
+
+    button {
+      background-color: #1a73e8;
+      color: white;
+      font-weight: bold;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #1155cc;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #fff;
-      border: 3px solid black;
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background-color: #ffffff;
     }
+
     th, td {
-      border: 1px solid #ddd;
       padding: 12px;
       text-align: left;
-      font-weight: 600; 
+      font-weight: 600;
     }
+
     th {
-      background-color: #007bff;
+      background-color: #1a73e8;
       color: white;
+      font-size: 1em;
     }
+
     tr:nth-child(even) {
-      background-color: #f2f2f2;
+      background-color: #f0f7ff;
     }
+
+    tr:hover {
+      background-color: #d0e4ff;
+    }
+
     caption {
       font-size: 1.5em;
-      margin-bottom: 10px;
       font-weight: bold;
+      margin-bottom: 10px;
+      color: #1a73e8;
     }
-    
+
+    .action-buttons button {
+      background-color: #f44336; /* crveno za delete */
+      border: none;
+      color: white;
+      font-size: 0.9em;
+      padding: 6px 10px;
+      border-radius: 5px;
+      margin-right: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .action-buttons button:hover {
+      opacity: 0.8;
+    }
+
+    .action-buttons button:first-child {
+      background-color: #ffa500; /* narandžasto za edit */
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr { display: none; }
+      tr {
+        margin-bottom: 15px;
+        border-radius: 8px;
+        background-color: #fff;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      td {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        padding-left: 50%;
+      }
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <table>
+  <h2>Dodaj novog pacijenta</h2>
+  
+  <label>Ime i prezime: </label>
+  <input type="text" id="imePrezime" placeholder="Marko Marković">
+  <br>
+  <label>Datum i vreme: </label>
+  <input type="datetime-local" id="datumVreme">
+  <br>
+  <button onclick="dodajPacijenta()">Dodaj pacijenta</button>
+
+  <table id="tabelaPacijenata">
     <caption>Zakazani termini pacijenata</caption>
-   
     <thead>
       <tr>
         <th>Ime i prezime</th>
         <th>Datum i vreme termina</th>
+        <th>Podešavanja</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Marko Marković</td>
-        <td>2025-11-03 10:30</td>
-      </tr>
-      <tr>
-        <td>Jelena Petrović</td>
-        <td>2025-11-03 11:00</td>
-      </tr>
-      <tr>
-        <td>Stefan Jovanović</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-      <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-      <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-      <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-      <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-      <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-      <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-      <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-      <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
-      </tr>
-       <tr>
-        <td>---</td>
-        <td>2025-11-03 11:30</td>
+        <td data-label="Ime i prezime">Marko Marković</td>
+        <td data-label="Datum i vreme termina">2025-11-03 10:30</td>
+        <td class="action-buttons">
+          <button onclick="editPacijenta(this)">Izmeni podatke o pacijentu</button>
+          <button onclick="deletePacijenta(this)">Izbriši pacijenta</button>
+        </td>
       </tr>
     </tbody>
   </table>
 
+  <script>
+    function dodajPacijenta() {
+      const imePrezime = document.getElementById('imePrezime').value.trim();
+      const datumVreme = document.getElementById('datumVreme').value;
+
+      if (!imePrezime || !datumVreme) {
+        alert('Molimo unesite ime i prezime, kao i datum i vreme.');
+        return;
+      }
+
+      const tabela = document.getElementById('tabelaPacijenata').getElementsByTagName('tbody')[0];
+      const noviRed = tabela.insertRow();
+
+      const celijaIme = noviRed.insertCell(0);
+      celijaIme.textContent = imePrezime;
+      celijaIme.setAttribute('data-label', 'Ime i prezime');
+
+      const celijaDatum = noviRed.insertCell(1);
+      celijaDatum.textContent = formatDatumVreme(datumVreme);
+      celijaDatum.setAttribute('data-label', 'Datum i vreme termina');
+
+      const celijaAkcija = noviRed.insertCell(2);
+      celijaAkcija.className = "action-buttons";
+      celijaAkcija.innerHTML = `
+        <button onclick="editPacijenta(this)">Edit</button>
+        <button onclick="deletePacijenta(this)">Delete</button>
+      `;
+
+      document.getElementById('imePrezime').value = '';
+      document.getElementById('datumVreme').value = '';
+
+      sortirajTabelu();
+    }
+
+    function deletePacijenta(btn) {
+      const red = btn.parentNode.parentNode;
+      red.parentNode.removeChild(red);
+    }
+
+    function editPacijenta(btn) {
+      const red = btn.parentNode.parentNode;
+      const celije = red.getElementsByTagName('td');
+
+      if (btn.textContent === "Edit") {
+        celije[0].innerHTML = `<input type="text" value="${celije[0].textContent}">`;
+        celije[1].innerHTML = `<input type="datetime-local" value="${formatForInput(celije[1].textContent)}">`;
+        btn.textContent = "Save";
+      } else {
+        const noviIme = celije[0].getElementsByTagName('input')[0].value.trim();
+        const noviDatum = celije[1].getElementsByTagName('input')[0].value;
+
+        if (!noviIme || !noviDatum) {
+          alert('Polja ne mogu biti prazna.');
+          return;
+        }
+
+        celije[0].textContent = noviIme;
+        celije[1].textContent = formatDatumVreme(noviDatum);
+        btn.textContent = "Edit";
+
+        sortirajTabelu();
+      }
+    }
+
+    function formatDatumVreme(datetime) {
+      return datetime.replace("T", " ");
+    }
+
+    function formatForInput(datetime) {
+      return datetime.replace(" ", "T");
+    }
+
+    function sortirajTabelu() {
+      const tabela = document.getElementById('tabelaPacijenata').getElementsByTagName('tbody')[0];
+      const redovi = Array.from(tabela.rows);
+
+      redovi.sort((a, b) => {
+        const datumA = new Date(a.cells[1].textContent.replace(" ", "T"));
+        const datumB = new Date(b.cells[1].textContent.replace(" ", "T"));
+        return datumA - datumB;
+      });
+
+      redovi.forEach(red => tabela.appendChild(red));
+    }
+  </script>
+
 </body>
 </html>
+
